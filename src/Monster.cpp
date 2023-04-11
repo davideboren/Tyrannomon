@@ -25,11 +25,19 @@ void Monster::update(){
     if(_x <= -8){
         _xdir = 1;
     }
-    else if(_x >= 64 + 8){
+    else if(_x >= 64 - 8){
         _xdir = -1;
     }
-    else{
-        _xdir = random(3) - 1;
+    else if (!random(4)){
+        if(_xdir != 0){
+            _xdir = 0;
+        }
+        else if (random(2)){
+            _xdir = 1;
+        }
+        else {
+            _xdir = -1;
+        }
     }
 
     _x += _xdir * 2;

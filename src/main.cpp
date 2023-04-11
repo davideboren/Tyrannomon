@@ -10,10 +10,12 @@
 
 TFT_eSPI tft = TFT_eSPI();
 
-TFT_eSprite_X bg = TFT_eSprite_X(&tft);
 TFT_eSprite_X scene = TFT_eSprite_X(&tft);
 
+Entity bg;
 Monster mon;
+
+Entity* entities[10];
 
 void setup() {
 
@@ -31,11 +33,13 @@ void setup() {
     Serial.println("SD initialized.");
   }
 
-  mon.setCharacter("tyr_fsht.bmp");
 
-  MrBitmap mrbg = MrBitmap();
-  bg.createSprite(64,64);
-  mrbg.loadBmp("bg.bmp",&bg);
+  entities[0] = &bg;
+  entities[1] = &mon;
+
+  bg.setDimensions(64,64);
+  bg.setSprite("bg.bmp",64,64);
+  mon.setCharacter("tyr_fsht.bmp");
 
   scene.createSprite(64,64);
 
@@ -43,17 +47,14 @@ void setup() {
 
 void loop() {
 
-  bg.pushToSprite(&scene,0,0);
-  mon.update();
-  mon.pushSprite(&scene);
+  for(int i = 0; i < 10; i++){
+    if(entities[i] != NULL){
+      entities[i]->update();
+      entities[i]->pushSprite(&scene);
+    }
+  }
+
   scene.pushImageScaled(&tft,0,0);
 
-  delay(370);
-
-  bg.pushToSprite(&scene,0,0);
-  mon.update();
-  mon.pushSprite(&scene);
-  scene.pushImageScaled(&tft,0,0);
-
-  delay(370);
+  delay(350);
 }
