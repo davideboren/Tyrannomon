@@ -83,12 +83,9 @@ bool TFT_eSprite_X::pushToSpriteCropped(TFT_eSprite_X *dspr, int32_t x, int32_t 
             tft->setSwapBytes(false);
             tft->pushImage(x, y, _dwidth, _dheight, _img );
             tft->setSwapBytes(oldSwapBytes);
+            return true;
         }
-        else if (_bpp == 4)
-        {
-            tft->pushImage(x, y, _dwidth, _dheight, _img4, false, _colorMap);
-        }
-        else tft->pushImage(x, y, _dwidth, _dheight, _img8, (bool)(_bpp == 8));
+        return false;
     }
 
     void TFT_eSprite_X::pushImageScaled(TFT_eSPI *tft, int32_t x, int32_t y){
