@@ -41,5 +41,19 @@ void Monster::update(){
     }
 
     _x += _xdir * 2;
-    this->_sx = abs(_sx - 16);
+
+    if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
+        if(random(3)){
+            this->_sx = SPR_STAND1_X;
+            this->_sy = SPR_STAND1_Y;
+        }
+        else{
+            this->_sx = SPR_SHOUT_X;
+            this->_sy = SPR_SHOUT_Y;
+        }
+    }
+    else {
+        this->_sx = SPR_STAND2_X;
+        this->_sy = SPR_STAND2_Y;
+    }
 }

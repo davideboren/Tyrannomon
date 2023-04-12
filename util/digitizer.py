@@ -1,6 +1,7 @@
-# digitizer.py
-# This python script walks through sprites in ./sprite and automatically generates byte arrays 
-# and enums in ../sprites.h
+#
+# Converts Transparent .png spritesheets to 24-bit BMPs
+# Any transparent pixels are changed to #FF00FF
+#
 
 from PIL import Image
 import os
