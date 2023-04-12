@@ -39,7 +39,7 @@ void setup() {
 
   bg.setDimensions(64,64);
   bg.setSprite("bg.bmp",64,64);
-  mon.setCharacter("sprite/adult/Tyrannomon.bmp");
+  mon.setCharacter(Tyrannomon);
 
   scene.createSprite(64,64);
 
