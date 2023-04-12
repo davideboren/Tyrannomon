@@ -14,6 +14,8 @@ class Monster : public Entity{
         Monster();
         Monster(String name);
 
+        int _age;
+
         void setCharacter(String name);
         void update();
 
