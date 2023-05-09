@@ -15,6 +15,7 @@ class Monster : public Entity{
         Monster();
         Monster(MonsterName name);
 
+        MonsterName _name;
         int _age, _lifespan;
 
         void setCharacter(MonsterName name);

@@ -20,11 +20,11 @@ Entity* entities[10];
 void setup() {
 
   Serial.begin(9600);
-  //while(!Serial);
-
+  
   tft.begin();
   tft.setRotation(1);
   tft.fillScreen(0x8);
+  //while(!Serial);
 
   if(!SD.begin(SD_CS)){
     Serial.println("SD not found.");
@@ -38,8 +38,8 @@ void setup() {
   entities[1] = &mon;
 
   bg.setDimensions(64,64);
-  bg.setSprite("bg.bmp",64,64);
-  mon.setCharacter(Tyrannomon);
+  bg.setSprite("bg2.bmp",64,64);
+  mon.setCharacter(Agu2006_Digitama);
 
   scene.createSprite(64,64);
 
