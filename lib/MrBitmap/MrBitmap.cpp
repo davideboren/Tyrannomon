@@ -4,7 +4,8 @@
 //Based on Bodmer's bmp draw function
 void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
   // Open requested file on SD card
-  this->bmpFS = SD.open(filename.c_str(), FILE_READ);
+  String filepath = "/" + filename;
+  this->bmpFS = SD.open(filepath.c_str(), FILE_READ);
 
   if (!bmpFS)
   {
