@@ -21,6 +21,7 @@ void Monster::setCharacter(MonsterName name){
     spr.createSprite(48,64);
     MrBitmap mrb = MrBitmap();
     mrb.loadBmp(MonsterDB[name].filename, &(this->spr));
+    _data = MonsterDB[name];
     _name = name;
 }
 
@@ -30,7 +31,7 @@ void Monster::update(){
         MonsterName next_mon = MonsterDB[_name].evos[0];
         setCharacter(next_mon);
     }
-    _age++;
+    //_age++;
     //Bounds
     if      ( _x <= -8 )    { _xdir =  1; }
     else if ( _x >= 56 )    { _xdir = -1; }
@@ -41,7 +42,7 @@ void Monster::update(){
         else                { _xdir = -1; }
     }
 
-    _x += _xdir * 2;
+    _x += _xdir*_data.speed;
 
     if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
         int dice = random(6);
