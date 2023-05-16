@@ -56,7 +56,7 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
               g_adj = 255;
             }
             r = (uint8_t)r_adj;
-            //g = (uint8_t)g_adj;
+            g = (uint8_t)g_adj;
             b *= 0.85;
           }
           uint16_t color = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);

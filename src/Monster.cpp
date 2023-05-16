@@ -26,17 +26,17 @@ void Monster::setCharacter(MonsterName name){
 }
 
 void Monster::update(){
-    if(_age > 10){
+    if(_age >= _data.lifespan){
         _age = 0;
         MonsterName next_mon = MonsterDB[_name].evos[0];
         setCharacter(next_mon);
     }
-    //_age++;
+    _age++;
     //Bounds
     if      ( _x <= -8 )    { _xdir =  1; }
     else if ( _x >= 56 )    { _xdir = -1; }
 
-    else if (!random(4)){ //Change direction
+    else if (!random(4) && this->_data.stage != digitama){ //Change direction
         if (_xdir != 0)     { _xdir =  0; }
         else if (random(2)) { _xdir =  1; }
         else                { _xdir = -1; }
@@ -45,7 +45,10 @@ void Monster::update(){
     _x += _xdir*_data.speed;
 
     if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
-        int dice = random(6);
+        int dice = 1;
+        if(this->_data.stage != digitama){
+            dice = random(6);
+        }
         if(dice == 5){
             this->_sx = SPR_HAPPY_X;
             this->_sy = SPR_HAPPY_Y;

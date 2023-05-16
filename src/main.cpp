@@ -39,7 +39,7 @@ void setup() {
 
   bg.setDimensions(64,64);
   bg.setSprite("bg2.bmp",64,64);
-  mon.setCharacter(Koromon);
+  mon.setCharacter(RandomEgg);
 
   scene.createSprite(64,64);
 
