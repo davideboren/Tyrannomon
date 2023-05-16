@@ -5,7 +5,9 @@
 
 enum MonsterName {
 Empty,
-Tyrannomon
+Agu2006_Digitama,
+Botamon,
+Koromon
 };
 
 enum MonsterStage {
@@ -20,20 +22,51 @@ enum MonsterStage {
 };
 
 struct MonsterRef {
-String filename;
-MonsterName evos[8];
-int speed;
+        String filepath;
+        MonsterName name;
+        MonsterStage stage;
+        String move_style;
+        int speed;
+        String bg;
+        MonsterName evos[8];
 };
 
 static const MonsterRef MonsterDB[] = {
 {
-	"null", 
-	{Tyrannomon},
-	2
-},{
-	"sprites/adult/Tyrannomon.bmp",
-	{Tyrannomon},
-	2
+	"sprites/digitama/Agu2006_Digitama.bmp",
+	Empty,
+	digitama,
+	"walk",
+	2,
+	"None",
+	{Agu2006_Digitama}
+},
+{
+	"sprites/digitama/Agu2006_Digitama.bmp",
+	Agu2006_Digitama,
+	digitama,
+	"walk",
+	2,
+	"None",
+	{Botamon}
+},
+{
+	"sprites/baby/Botamon.bmp",
+	Botamon,
+	baby,
+	"walk",
+	2,
+	"None",
+	{Koromon}
+},
+{
+	"sprites/baby_ii/Koromon.bmp",
+	Koromon,
+	baby_ii,
+	"walk",
+	2,
+	"None",
+	{Agu2006_Digitama}
 }
 };
 #endif //_MONSTER_DEFS_H_

@@ -20,7 +20,7 @@ Monster::Monster(MonsterName name){
 void Monster::setCharacter(MonsterName name){
     spr.createSprite(48,64);
     MrBitmap mrb = MrBitmap();
-    mrb.loadBmp(MonsterDB[name].filename, &(this->spr));
+    mrb.loadBmp(MonsterDB[name].filepath, &(this->spr));
     _data = MonsterDB[name];
     _name = name;
 }
