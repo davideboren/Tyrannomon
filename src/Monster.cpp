@@ -27,9 +27,16 @@ void Monster::setCharacter(MonsterName name){
 
 void Monster::update(){
     if(_age >= _data.lifespan){
-        _age = 0;
-        MonsterName next_mon = MonsterDB[_name].evos[0];
+        int num_evos = 0; 
+        for(int i = 0; i < 8; i++){
+            if(MonsterDB[_name].evos[i] != Empty){
+                num_evos++;
+            }
+        }
+        int evo_choice = random(0, num_evos);
+        MonsterName next_mon = MonsterDB[_name].evos[evo_choice];
         setCharacter(next_mon);
+        _age = 0;
     }
     _age++;
     //Bounds
