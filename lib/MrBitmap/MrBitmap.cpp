@@ -47,7 +47,7 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
           r = *bptr++;
           if(!(r == 0xFF && g == 0x00 && b == 0xFF)){
             //TFT is too heavy on blue tones, adjust colors accordingly
-            int r_adj = (int) r*1.25;
+            int r_adj = (int) r*1.3;
             if(r_adj > 255){
               r_adj = 255;
             }

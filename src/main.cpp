@@ -70,5 +70,5 @@ void loop() {
 
   scene.pushImageScaled(&tft,0,0);
 
-  delay(350);
+  delay(400);
 }

@@ -35,7 +35,7 @@ int Monster::get_age(){
 
 
 void Monster::update(){
-    if(_age >= _data.lifespan){
+    while(_age >= _data.lifespan){
         int num_evos = 0; 
         for(int i = 0; i < 8; i++){
             if(MonsterDB[_name].evos[i] != Empty){

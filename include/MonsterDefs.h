@@ -7,11 +7,19 @@
 
 enum MonsterName {
 Empty,
-Agu2006_Digitama,
-Botamon,
-Koromon,
-Kera_Digitama,
-Kuramon,
+Flora_Digitama,
+Nyokimon,
+Pyocomon,
+Mushmon,
+Palmon,
+Togemon,
+Vegimon,
+Woodmon,
+Tento_Digitama,
+Bubbmon,
+Mochimon,
+Tentomon,
+Kunemon,
 RandomEgg
 };
 
@@ -46,32 +54,62 @@ static const MonsterRef MonsterDB[] = {
 	"walk",
 	2,
 	"None",
-	{Agu2006_Digitama}
+	{Empty}
 },
 {
-	"sprites/digitama/Agu2006_Digitama.bmp",
-	Agu2006_Digitama,
+	"sprites/digitama/Flora_Digitama.bmp",
+	Flora_Digitama,
 	digitama,
 	50,
 	"walk",
 	0,
 	"None",
-	{Botamon}
+	{Nyokimon}
 },
 {
-	"sprites/baby/Botamon.bmp",
-	Botamon,
+	"sprites/baby/Nyokimon.bmp",
+	Nyokimon,
 	baby,
 	50,
 	"walk",
 	2,
 	"None",
-	{Koromon}
+	{Pyocomon}
 },
 {
-	"sprites/baby_ii/Koromon.bmp",
-	Koromon,
+	"sprites/baby_ii/Pyocomon.bmp",
+	Pyocomon,
 	baby_ii,
+	50,
+	"walk",
+	2,
+	"None",
+	{Mushmon, Palmon}
+},
+{
+	"sprites/child/Mushmon.bmp",
+	Mushmon,
+	child,
+	50,
+	"walk",
+	2,
+	"None",
+	{Vegimon, Woodmon}
+},
+{
+	"sprites/child/Palmon.bmp",
+	Palmon,
+	child,
+	50,
+	"walk",
+	2,
+	"None",
+	{Togemon, Woodmon}
+},
+{
+	"sprites/adult/Togemon.bmp",
+	Togemon,
+	adult,
 	50,
 	"walk",
 	2,
@@ -79,19 +117,69 @@ static const MonsterRef MonsterDB[] = {
 	{RandomEgg}
 },
 {
-	"sprites/digitama/Kera_Digitama.bmp",
-	Kera_Digitama,
+	"sprites/adult/Vegimon.bmp",
+	Vegimon,
+	adult,
+	50,
+	"walk",
+	2,
+	"None",
+	{RandomEgg}
+},
+{
+	"sprites/adult/Woodmon.bmp",
+	Woodmon,
+	adult,
+	50,
+	"walk",
+	2,
+	"None",
+	{RandomEgg}
+},
+{
+	"sprites/digitama/Tento_Digitama.bmp",
+	Tento_Digitama,
 	digitama,
 	50,
 	"walk",
 	0,
 	"None",
-	{Kuramon}
+	{Bubbmon}
 },
 {
-	"sprites/baby/Kuramon.bmp",
-	Kuramon,
+	"sprites/baby/Bubbmon.bmp",
+	Bubbmon,
 	baby,
+	50,
+	"walk",
+	2,
+	"None",
+	{Mochimon}
+},
+{
+	"sprites/baby_ii/Mochimon.bmp",
+	Mochimon,
+	baby_ii,
+	50,
+	"walk",
+	2,
+	"None",
+	{Tentomon, Kunemon}
+},
+{
+	"sprites/child/Tentomon.bmp",
+	Tentomon,
+	child,
+	50,
+	"walk",
+	2,
+	"None",
+	{RandomEgg}
+},
+{
+	"sprites/child/Kunemon.bmp",
+	Kunemon,
+	child,
 	50,
 	"walk",
 	2,
@@ -106,7 +194,7 @@ static const MonsterRef MonsterDB[] = {
 	"walk",
 	2,
 	"None",
-	{Agu2006_Digitama, Kera_Digitama}
+	{Flora_Digitama, Tento_Digitama}
 }
 };
 #endif //_MONSTER_DEFS_H_
