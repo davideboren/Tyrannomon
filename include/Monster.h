@@ -2,12 +2,12 @@
 #define _MONSTER_H_
 
 #include <Arduino.h>
-#include <Entity.h>
-#include <global.h>
-#include <MonsterDefs.h>
 
-#include "../lib/MrBitmap/MrBitmap.h"
-#include "../lib/TFT_eSprite_X/TFT_eSprite_X.h"
+#include <global.h>
+#include <TFT_eSprite_X.h>
+#include <MrBitmap.h>
+#include <Entity.h>
+#include <MonsterDefs.h>
 
 class Monster : public Entity{
 
@@ -20,6 +20,8 @@ class Monster : public Entity{
         int _age;
 
         void setCharacter(MonsterName name);
+        MonsterName get_name();
+        int get_age();
         void update();
 
 };

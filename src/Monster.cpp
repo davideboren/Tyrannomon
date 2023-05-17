@@ -25,6 +25,15 @@ void Monster::setCharacter(MonsterName name){
     _name = name;
 }
 
+MonsterName Monster::get_name(){
+    return _data.name;
+}
+
+int Monster::get_age(){
+    return _age;
+}
+
+
 void Monster::update(){
     if(_age >= _data.lifespan){
         int num_evos = 0; 

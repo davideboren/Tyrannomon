@@ -1,12 +1,12 @@
 #include <Arduino.h>
 #include <SD.h>
 #include <TFT_eSPI.h>
+#include <EEPROM.h>
+
 #include <global.h>
+#include <TFT_eSprite_X.h>
+#include <MrBitmap.h>
 #include <Monster.h>
-
-#include "../lib/TFT_eSprite_X/TFT_eSprite_X.h"
-#include "../lib/MrBitmap/MrBitmap.h"
-
 
 TFT_eSPI tft = TFT_eSPI();
 
@@ -39,13 +39,27 @@ void setup() {
 
   bg.setDimensions(64,64);
   bg.setSprite("bg2.bmp",64,64);
-  mon.setCharacter(RandomEgg);
+
+  EEPROM.begin(64);
+  MonsterName stored_mon;
+  EEPROM.get(0, stored_mon);
+  if(stored_mon == Empty){
+    stored_mon = RandomEgg;
+  }
+  mon.setCharacter(stored_mon);
+  int stored_age;
+  EEPROM.get(32, stored_age);
+  mon._age = stored_age;
 
   scene.createSprite(64,64);
 
 }
 
 void loop() {
+
+  EEPROM.put(0, entities[1]->get_name());
+  EEPROM.put(32, entities[1]->get_age());
+  EEPROM.commit();
 
   for(int i = 0; i < 10; i++){
     if(entities[i] != NULL){
