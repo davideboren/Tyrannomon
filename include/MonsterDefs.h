@@ -7,19 +7,13 @@
 
 enum MonsterName {
 Empty,
-Flora_Digitama,
-Nyokimon,
-Pyocomon,
-Mushmon,
-Palmon,
-Togemon,
-Vegimon,
-Woodmon,
-Tento_Digitama,
-Bubbmon,
-Mochimon,
-Tentomon,
-Kunemon,
+Sunariza_Digitama,
+Sunamon,
+Sunarizamon,
+Gotsumon,
+Goromon,
+Tortamon,
+Centalmon,
 RandomEgg
 };
 
@@ -57,133 +51,73 @@ static const MonsterRef MonsterDB[] = {
 	{Empty}
 },
 {
-	"sprites/digitama/Flora_Digitama.bmp",
-	Flora_Digitama,
+	"sprites/digitama/Sunariza_Digitama.bmp",
+	Sunariza_Digitama,
 	digitama,
 	50,
 	"walk",
 	0,
-	"None",
-	{Nyokimon}
+	"bg/bg_0.bmp",
+	{Sunamon}
 },
 {
-	"sprites/baby/Nyokimon.bmp",
-	Nyokimon,
+	"sprites/baby/Sunamon.bmp",
+	Sunamon,
 	baby,
 	50,
 	"walk",
 	2,
-	"None",
-	{Pyocomon}
+	"bg/bg_2.bmp",
+	{Goromon}
 },
 {
-	"sprites/baby_ii/Pyocomon.bmp",
-	Pyocomon,
+	"sprites/child/Sunarizamon.bmp",
+	Sunarizamon,
+	child,
+	50,
+	"walk",
+	2,
+	"bg/bg_0.bmp",
+	{Tortamon}
+},
+{
+	"sprites/child/Gotsumon.bmp",
+	Gotsumon,
+	child,
+	50,
+	"walk",
+	2,
+	"bg/bg_0.bmp",
+	{Centalmon}
+},
+{
+	"sprites/baby_ii/Goromon.bmp",
+	Goromon,
 	baby_ii,
 	50,
 	"walk",
 	2,
-	"None",
-	{Mushmon, Palmon}
+	"bg/bg_0.bmp",
+	{Sunarizamon, Gotsumon}
 },
 {
-	"sprites/child/Mushmon.bmp",
-	Mushmon,
-	child,
-	50,
-	"walk",
-	2,
-	"None",
-	{Vegimon, Woodmon}
-},
-{
-	"sprites/child/Palmon.bmp",
-	Palmon,
-	child,
-	50,
-	"walk",
-	2,
-	"None",
-	{Togemon, Woodmon}
-},
-{
-	"sprites/adult/Togemon.bmp",
-	Togemon,
+	"sprites/adult/Tortamon.bmp",
+	Tortamon,
 	adult,
 	50,
 	"walk",
 	2,
-	"None",
+	"bg/bg_0.bmp",
 	{RandomEgg}
 },
 {
-	"sprites/adult/Vegimon.bmp",
-	Vegimon,
+	"sprites/adult/Centalmon.bmp",
+	Centalmon,
 	adult,
 	50,
 	"walk",
 	2,
-	"None",
-	{RandomEgg}
-},
-{
-	"sprites/adult/Woodmon.bmp",
-	Woodmon,
-	adult,
-	50,
-	"walk",
-	2,
-	"None",
-	{RandomEgg}
-},
-{
-	"sprites/digitama/Tento_Digitama.bmp",
-	Tento_Digitama,
-	digitama,
-	50,
-	"walk",
-	0,
-	"None",
-	{Bubbmon}
-},
-{
-	"sprites/baby/Bubbmon.bmp",
-	Bubbmon,
-	baby,
-	50,
-	"walk",
-	2,
-	"None",
-	{Mochimon}
-},
-{
-	"sprites/baby_ii/Mochimon.bmp",
-	Mochimon,
-	baby_ii,
-	50,
-	"walk",
-	2,
-	"None",
-	{Tentomon, Kunemon}
-},
-{
-	"sprites/child/Tentomon.bmp",
-	Tentomon,
-	child,
-	50,
-	"walk",
-	2,
-	"None",
-	{RandomEgg}
-},
-{
-	"sprites/child/Kunemon.bmp",
-	Kunemon,
-	child,
-	50,
-	"walk",
-	2,
-	"None",
+	"bg/bg_0.bmp",
 	{RandomEgg}
 },
 {
@@ -193,8 +127,8 @@ static const MonsterRef MonsterDB[] = {
 	0,
 	"walk",
 	2,
-	"None",
-	{Flora_Digitama, Tento_Digitama}
+	"bg/bg_0.bmp",
+	{Sunariza_Digitama}
 }
 };
 #endif //_MONSTER_DEFS_H_

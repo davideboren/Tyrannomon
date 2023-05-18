@@ -12,7 +12,9 @@ TFT_eSPI tft = TFT_eSPI();
 
 TFT_eSprite_X scene = TFT_eSprite_X(&tft);
 
+String current_bg;
 Entity bg;
+
 Monster mon;
 
 Entity* entities[10];
@@ -37,8 +39,6 @@ void setup() {
   entities[0] = &bg;
   entities[1] = &mon;
 
-  bg.setDimensions(64,64);
-  bg.setSprite("bg2.bmp",64,64);
 
   EEPROM.begin(64);
   MonsterName stored_mon;
@@ -51,6 +51,10 @@ void setup() {
   EEPROM.get(32, stored_age);
   mon._age = stored_age;
 
+  current_bg = mon._data.bg;
+  bg.setDimensions(64,64);
+  bg.setSprite(current_bg,64,64);
+
   scene.createSprite(64,64);
 
 }
@@ -60,6 +64,11 @@ void loop() {
   EEPROM.put(0, entities[1]->get_name());
   EEPROM.put(32, entities[1]->get_age());
   EEPROM.commit();
+
+  if(mon._data.bg != current_bg){
+    current_bg = mon._data.bg;
+    bg.setSprite(current_bg,64,64);
+  }
 
   for(int i = 0; i < 10; i++){
     if(entities[i] != NULL){
