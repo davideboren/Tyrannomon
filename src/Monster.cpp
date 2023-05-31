@@ -33,20 +33,24 @@ int Monster::get_age(){
     return _age;
 }
 
+bool Monster::evo_ready(){
+    return _age >= _data.lifespan;
+}
+
+void Monster::evolve(){
+    int num_evos = 0; 
+    for(int i = 0; i < 8; i++){
+        if(MonsterDB[_name].evos[i] != Empty){
+            num_evos++;
+        }
+    }
+    int evo_choice = random(0, num_evos);
+    MonsterName next_mon = MonsterDB[_name].evos[evo_choice];
+    setCharacter(next_mon);
+    _age = 0;
+}
 
 void Monster::update(){
-    while(_age >= _data.lifespan){
-        int num_evos = 0; 
-        for(int i = 0; i < 8; i++){
-            if(MonsterDB[_name].evos[i] != Empty){
-                num_evos++;
-            }
-        }
-        int evo_choice = random(0, num_evos);
-        MonsterName next_mon = MonsterDB[_name].evos[evo_choice];
-        setCharacter(next_mon);
-        _age = 0;
-    }
     _age++;
     //Bounds
     if      ( _x <= -8 )    { _xdir =  1; }

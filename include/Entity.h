@@ -24,8 +24,6 @@ class Entity {
         TFT_eSprite_X spr = TFT_eSprite_X(&tft);
 
         virtual void update();
-        virtual MonsterName get_name();
-        virtual int get_age();
 
         void pushSprite(TFT_eSprite_X *bg);
         void setSprite(String filename, uint16_t w, uint16_t h);

@@ -20,7 +20,6 @@ Monster mon;
 Entity* entities[10];
 
 void setup() {
-
   Serial.begin(9600);
   
   tft.begin();
@@ -35,10 +34,7 @@ void setup() {
     Serial.println("SD initialized.");
   }
 
-
   entities[0] = &bg;
-  entities[1] = &mon;
-
 
   EEPROM.begin(64);
   MonsterName stored_mon;
@@ -56,18 +52,16 @@ void setup() {
   bg.setSprite(current_bg,64,64);
 
   scene.createSprite(64,64);
-
 }
 
 void loop() {
-
-  EEPROM.put(0, entities[1]->get_name());
-  EEPROM.put(32, entities[1]->get_age());
+  EEPROM.put(0, mon.get_name());
+  EEPROM.put(32, mon.get_age());
   EEPROM.commit();
 
-  if(mon._data.bg != current_bg){
-    current_bg = mon._data.bg;
-    bg.setSprite(current_bg,64,64);
+  while(mon.evo_ready()){
+    mon.evolve();
+    bg.setSprite(mon._data.bg, 64, 64);
   }
 
   for(int i = 0; i < 10; i++){
@@ -76,6 +70,9 @@ void loop() {
       entities[i]->pushSprite(&scene);
     }
   }
+
+  mon.update();
+  mon.pushSprite(&scene);
 
   scene.pushImageScaled(&tft,0,0);
 

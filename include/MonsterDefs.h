@@ -7,13 +7,11 @@
 
 enum MonsterName {
 Empty,
-Sunariza_Digitama,
-Sunamon,
-Sunarizamon,
-Gotsumon,
-Goromon,
-Tortamon,
-Centalmon,
+Kiimon,
+Imp_Digitama,
+Yaamon,
+Impmon_X,
+Gazimon_X,
 RandomEgg
 };
 
@@ -51,73 +49,53 @@ static const MonsterRef MonsterDB[] = {
 	{Empty}
 },
 {
-	"sprites/digitama/Sunariza_Digitama.bmp",
-	Sunariza_Digitama,
-	digitama,
-	50,
-	"walk",
-	0,
-	"bg/bg_0.bmp",
-	{Sunamon}
-},
-{
-	"sprites/baby/Sunamon.bmp",
-	Sunamon,
+	"sprites/baby/Kiimon.bmp",
+	Kiimon,
 	baby,
 	50,
 	"walk",
 	2,
-	"bg/bg_2.bmp",
-	{Goromon}
+	"bg/169_0xa9.bmp",
+	{Yaamon}
 },
 {
-	"sprites/child/Sunarizamon.bmp",
-	Sunarizamon,
-	child,
+	"sprites/digitama/Imp_Digitama.bmp",
+	Imp_Digitama,
+	digitama,
 	50,
 	"walk",
-	2,
-	"bg/bg_0.bmp",
-	{Tortamon}
+	0,
+	"bg/169_0xa9.bmp",
+	{Kiimon}
 },
 {
-	"sprites/child/Gotsumon.bmp",
-	Gotsumon,
-	child,
-	50,
-	"walk",
-	2,
-	"bg/bg_0.bmp",
-	{Centalmon}
-},
-{
-	"sprites/baby_ii/Goromon.bmp",
-	Goromon,
+	"sprites/baby_ii/Yaamon.bmp",
+	Yaamon,
 	baby_ii,
 	50,
 	"walk",
 	2,
-	"bg/bg_0.bmp",
-	{Sunarizamon, Gotsumon}
+	"bg/169_0xa9.bmp",
+	{Impmon_X, Gazimon_X}
 },
 {
-	"sprites/adult/Tortamon.bmp",
-	Tortamon,
-	adult,
+	"sprites/child/Impmon_X.bmp",
+	Impmon_X,
+	child,
 	50,
 	"walk",
 	2,
-	"bg/bg_0.bmp",
+	"bg/169_0xa9.bmp",
 	{RandomEgg}
 },
 {
-	"sprites/adult/Centalmon.bmp",
-	Centalmon,
-	adult,
+	"sprites/child/Gazimon_X.bmp",
+	Gazimon_X,
+	child,
 	50,
 	"walk",
 	2,
-	"bg/bg_0.bmp",
+	"bg/188_0xbc.bmp",
 	{RandomEgg}
 },
 {
@@ -128,7 +106,7 @@ static const MonsterRef MonsterDB[] = {
 	"walk",
 	2,
 	"bg/bg_0.bmp",
-	{Sunariza_Digitama}
+	{Imp_Digitama}
 }
 };
 #endif //_MONSTER_DEFS_H_

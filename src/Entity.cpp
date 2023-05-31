@@ -32,13 +32,5 @@ void Entity::setDimensions(int32_t w, int32_t h){
   this->_h = h;
 }
 
-MonsterName Entity::get_name(){
-  return Empty;
-}
-
-int Entity::get_age(){
-  return 0;
-}
-
 void Entity::update(){
 }

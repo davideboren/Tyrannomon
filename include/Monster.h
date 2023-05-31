@@ -22,6 +22,8 @@ class Monster : public Entity{
         void setCharacter(MonsterName name);
         MonsterName get_name();
         int get_age();
+        bool evo_ready();
+        void evolve();
         void update();
 
 };
