@@ -43,6 +43,7 @@ void setup() {
     stored_mon = RandomEgg;
   }
   mon.setCharacter(stored_mon);
+  //mon.setCharacter(RandomEgg);
   int stored_age;
   EEPROM.get(32, stored_age);
   mon._age = stored_age;

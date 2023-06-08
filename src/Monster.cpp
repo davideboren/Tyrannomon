@@ -48,6 +48,10 @@ void Monster::evolve(){
     MonsterName next_mon = MonsterDB[_name].evos[evo_choice];
     setCharacter(next_mon);
     _age = 0;
+    if (this->_data.stage == digitama){
+        _x = 32 - 8;
+        _y = 64 - 16 - 4;
+    }
 }
 
 void Monster::update(){
@@ -63,8 +67,26 @@ void Monster::update(){
     }
 
     _x += _xdir*_data.speed;
-
-    if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
+    
+    //Hatch logic
+    if (this->_data.stage == digitama && _age >= this->_data.lifespan - 8){
+        this->_sx = SPR_STAND2_X;
+        this->_sy = SPR_STAND2_Y;
+        if (_age >= this->_data.lifespan - 4){
+            this->_sx = SPR_HATCH_X;
+            this->_sy = SPR_HATCH_Y;
+        }
+        else if (_age == this->_data.lifespan - 8){
+            _x -= 1;
+        }
+        else if (_age == this->_data.lifespan - 6){
+            _x -= 2;
+        }
+        else if (_age == this->_data.lifespan - 5 || _age == this->_data.lifespan - 7){
+            _x += 2;
+        }
+    }
+    else if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
         int dice = 1;
         if(this->_data.stage != digitama){
             dice = random(6);

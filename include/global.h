@@ -1,6 +1,8 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+#define SPR_HATCH_X 32
+#define SPR_HATCH_Y 0
 #define SPR_STAND1_X 0
 #define SPR_STAND1_Y 0
 #define SPR_STAND2_X 16
