@@ -11,6 +11,7 @@ Monster::Monster(){
     this->_sy = 0;
 
     this->_age = 0;
+    this->_lifespan = 10;
 }
 
 Monster::Monster(MonsterName name){
@@ -23,6 +24,7 @@ void Monster::setCharacter(MonsterName name){
     mrb.loadBmp(MonsterDB[name].filepath, &(this->spr));
     _data = MonsterDB[name];
     _name = name;
+    _lifespan = _data.lifespan*120;
 }
 
 MonsterName Monster::get_name(){
@@ -34,7 +36,7 @@ int Monster::get_age(){
 }
 
 bool Monster::evo_ready(){
-    return _age >= _data.lifespan;
+    return _age >= _lifespan;
 }
 
 void Monster::evolve(){
@@ -69,20 +71,20 @@ void Monster::update(){
     _x += _xdir*_data.speed;
     
     //Hatch logic
-    if (this->_data.stage == digitama && _age >= this->_data.lifespan - 8){
+    if (this->_data.stage == digitama && _age >= this->_lifespan - 8){
         this->_sx = SPR_STAND2_X;
         this->_sy = SPR_STAND2_Y;
-        if (_age >= this->_data.lifespan - 4){
+        if (_age >= this->_lifespan - 4){
             this->_sx = SPR_HATCH_X;
             this->_sy = SPR_HATCH_Y;
         }
-        else if (_age == this->_data.lifespan - 8){
+        else if (_age == this->_lifespan - 8){
             _x -= 1;
         }
-        else if (_age == this->_data.lifespan - 6){
+        else if (_age == this->_lifespan - 6){
             _x -= 2;
         }
-        else if (_age == this->_data.lifespan - 5 || _age == this->_data.lifespan - 7){
+        else if (_age == this->_lifespan - 5 || _age == this->_lifespan - 7){
             _x += 2;
         }
     }

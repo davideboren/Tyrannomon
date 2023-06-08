@@ -7,11 +7,14 @@
 
 enum MonsterName {
 Empty,
-Kiimon,
-Imp_Digitama,
-Yaamon,
-Impmon_X,
-Gazimon_X,
+Agu2006_Digitama,
+Botamon,
+Koromon,
+Agumon,
+Elecmon,
+Greymon,
+Tyrannomon,
+Numemon,
 RandomEgg
 };
 
@@ -49,53 +52,83 @@ static const MonsterRef MonsterDB[] = {
 	{Empty}
 },
 {
-	"sprites/baby/Kiimon.bmp",
-	Kiimon,
-	baby,
-	50,
-	"walk",
-	2,
-	"bg/169_0xa9.bmp",
-	{Yaamon}
-},
-{
-	"sprites/digitama/Imp_Digitama.bmp",
-	Imp_Digitama,
+	"sprites/digitama/Agu2006_Digitama.bmp",
+	Agu2006_Digitama,
 	digitama,
-	50,
+	30,
 	"walk",
 	0,
-	"bg/169_0xa9.bmp",
-	{Kiimon}
+	"bg/bg_0.bmp",
+	{Botamon}
 },
 {
-	"sprites/baby_ii/Yaamon.bmp",
-	Yaamon,
+	"sprites/baby/Botamon.bmp",
+	Botamon,
+	baby,
+	60,
+	"walk",
+	2,
+	"bg/bg_0.bmp",
+	{Koromon}
+},
+{
+	"sprites/baby_ii/Koromon.bmp",
+	Koromon,
 	baby_ii,
-	50,
+	90,
 	"walk",
 	2,
-	"bg/169_0xa9.bmp",
-	{Impmon_X, Gazimon_X}
+	"bg/bg_0.bmp",
+	{Agumon, Elecmon}
 },
 {
-	"sprites/child/Impmon_X.bmp",
-	Impmon_X,
+	"sprites/child/Agumon.bmp",
+	Agumon,
 	child,
-	50,
+	120,
 	"walk",
 	2,
-	"bg/169_0xa9.bmp",
+	"bg/bg_0.bmp",
+	{Greymon, Tyrannomon}
+},
+{
+	"sprites/child/Elecmon.bmp",
+	Elecmon,
+	child,
+	120,
+	"walk",
+	2,
+	"bg/bg_0.bmp",
+	{Tyrannomon, Numemon}
+},
+{
+	"sprites/adult/Greymon.bmp",
+	Greymon,
+	adult,
+	120,
+	"walk",
+	2,
+	"bg/bg_0.bmp",
 	{RandomEgg}
 },
 {
-	"sprites/child/Gazimon_X.bmp",
-	Gazimon_X,
-	child,
-	50,
+	"sprites/adult/Tyrannomon.bmp",
+	Tyrannomon,
+	adult,
+	120,
 	"walk",
 	2,
-	"bg/188_0xbc.bmp",
+	"bg/bg_0.bmp",
+	{RandomEgg}
+},
+{
+	"sprites/adult/Numemon.bmp",
+	Numemon,
+	adult,
+	120,
+	"walk",
+	2,
+	"bg/bg_0.bmp",
 	{RandomEgg}
 },
 {
@@ -106,7 +139,7 @@ static const MonsterRef MonsterDB[] = {
 	"walk",
 	2,
 	"bg/bg_0.bmp",
-	{Imp_Digitama}
+	{Agu2006_Digitama}
 }
 };
 #endif //_MONSTER_DEFS_H_
