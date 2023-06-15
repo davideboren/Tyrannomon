@@ -142,3 +142,14 @@ bool TFT_eSprite_X::pushToSpriteCropped(TFT_eSprite_X *dspr, int32_t x, int32_t 
         }
         tft->endWrite();
     }
+
+    void TFT_eSprite_X::pushImage1x(TFT_eSPI *tft, int32_t x, int32_t y){
+        //TODO: optimize (setAddrWindow and push byte by byte probably).
+        tft->startWrite();
+        for(int row = 0; row < height(); row++){
+            for(int col = 0; col < width(); col++){
+                tft->drawPixel(col, row, readPixel(col,row));
+            }
+        }
+        tft->endWrite();
+    }
