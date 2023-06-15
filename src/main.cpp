@@ -49,10 +49,9 @@ void setup() {
   mon._age = stored_age;
 
   current_bg = mon._data.bg;
-  bg.setDimensions(64,64);
-  bg.setSprite(current_bg,64,64);
+  bg.setSprite(current_bg);
 
-  scene.createSprite(64,64);
+  scene.createSprite(bg._w, bg._h);
 }
 
 void loop() {
@@ -62,7 +61,7 @@ void loop() {
 
   while(mon.evo_ready()){
     mon.evolve();
-    bg.setSprite(mon._data.bg, 64, 64);
+    bg.setSprite(mon._data.bg);
   }
 
   for(int i = 0; i < 10; i++){
