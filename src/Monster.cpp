@@ -24,6 +24,8 @@ void Monster::setCharacter(MonsterName name){
     mrb.loadBmp(MonsterDB[name].filepath, &(this->spr));
     _data = MonsterDB[name];
     _name = name;
+
+    //Convert  to halfseconds
     _lifespan = _data.lifespan*120;
 }
 

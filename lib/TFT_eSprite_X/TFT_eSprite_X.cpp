@@ -74,6 +74,47 @@ bool TFT_eSprite_X::pushToSpriteCropped(TFT_eSprite_X *dspr, int32_t x, int32_t 
         return true;
     }
 
+    bool TFT_eSprite_X::pushToSprite2x(TFT_eSprite_X *dspr, int32_t x, int32_t y, int8_t dir, 
+        int32_t sx, int32_t sy, int32_t sw, int32_t sh, uint16_t transp) {
+
+        if ( !_created  || !dspr->_created) return false; // Check Sprites exist
+
+        // Check destination sprite compatibility
+        int8_t ds_bpp = dspr->getColorDepth();
+        if (_bpp == 16 && ds_bpp != 16 && ds_bpp !=  8) return false;
+        if (_bpp ==  8 && ds_bpp !=  8) return false;
+        if (_bpp ==  4 || ds_bpp ==  4) return false;
+        if (_bpp ==  1 && ds_bpp !=  1) return false;
+
+        bool oldSwapBytes = dspr->getSwapBytes();
+
+        transp = transp>>8 | transp<<8;
+
+        for (int32_t ys = sy; ys < sy + sh; ys++) {
+            int32_t ox = x;
+            for (int32_t xs = sx; xs < sx + sw; xs++) {
+                uint16_t rp = 0;
+                if (_bpp == 16) rp = _img[xs + ys * width()];
+                else { rp = readPixel(xs, ys); rp = rp>>8 | rp<<8; }
+
+                if (rp != transp) {
+                    uint16_t buff[2];
+                    buff[0] = rp;
+                    buff[1] = rp;
+                    uint32_t dx = (dir == -1 ? ox : x + sw - (ox - x));
+                    dspr->pushImage(dx, y, 2, 1, buff);
+                    dspr->pushImage(dx, y+1, 2, 1, buff);
+                }
+                ox+=2;
+            }
+            y+=2;
+        }
+
+
+        dspr->setSwapBytes(oldSwapBytes);
+        return true;
+    }
+
     bool TFT_eSprite_X::pushSpriteScaled(TFT_eSPI *tft, int32_t x, int32_t y){
         if (!_created) return false;
 
