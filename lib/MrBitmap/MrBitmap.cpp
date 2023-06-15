@@ -28,7 +28,6 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
 
     if ((this->read16(bmpFS) == 1) && (this->read16(bmpFS) == 24) && (this->read32(bmpFS) == 0))
     {
-
       bmpFS.seek(seekOffset);
 
       uint16_t padding = (4 - ((w * 3) & 3)) & 3;
@@ -73,6 +72,55 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
   bmpFS.close();
 }
 
+uint16_t MrBitmap::get_width(String filename){
+  // Open requested file on SD card
+  String filepath = "/" + filename;
+  this->bmpFS = SD.open(filepath.c_str(), FILE_READ);
+
+  if (!bmpFS)
+  {
+    Serial.print("File not found");
+    return 0;
+  }
+
+  uint16_t w, h;
+
+  if (this->read16(bmpFS) == 0x4D42)
+  {
+    for(int i = 0; i < 4; i++){
+      this->read32(bmpFS);
+    }
+    w = this->read32(bmpFS);
+    h = this->read32(bmpFS);
+    return w;
+  }
+  return 0;
+}
+
+uint16_t MrBitmap::get_height(String filename){
+  // Open requested file on SD card
+  String filepath = "/" + filename;
+  this->bmpFS = SD.open(filepath.c_str(), FILE_READ);
+
+  if (!bmpFS)
+  {
+    Serial.print("File not found");
+    return 0;
+  }
+
+  uint16_t w, h;
+
+  if (this->read16(bmpFS) == 0x4D42)
+  {
+    for(int i = 0; i < 4; i++){
+      this->read32(bmpFS);
+    }
+    w = this->read32(bmpFS);
+    h = this->read32(bmpFS);
+    return h;
+  }
+  return 0;
+}
 // These read 16- and 32-bit types from the SD card file.
 // BMP data is stored little-endian, Arduino is little-endian too.
 // May need to reverse subscript order if porting elsewhere.
