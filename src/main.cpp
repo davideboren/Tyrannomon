@@ -48,13 +48,11 @@ void setup() {
   EEPROM.get(32, stored_age);
   mon._age = stored_age;
 
-  //current_bg = mon._data.bg;
-  current_bg = "bg/bg_spooky_128.bmp";
-  //bg.setDimensions(64,64);
-  bg.setDimensions(128,128);
-  bg.setSprite(current_bg,128,128);
+  current_bg = mon._data.bg;
+  bg.setDimensions(64,64);
+  bg.setSprite(current_bg,64,64);
 
-  scene.createSprite(128,128);
+  scene.createSprite(64,64);
 }
 
 void loop() {
@@ -75,9 +73,9 @@ void loop() {
   }
 
   mon.update();
-  mon.pushSprite2x(&scene);
+  mon.pushSprite(&scene);
 
-  scene.pushImage1x(&tft,0,0);
+  scene.pushImageScaled(&tft,0,0);
 
   delay(400);
 }
