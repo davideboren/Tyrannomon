@@ -2,7 +2,7 @@
 
 Monster::Monster(){
     this->_x = 32 - 8;
-    this->_y = 64 - 16 - 4;
+    this->_y = 64 - 16 - 6;
     this->_xdir = 1;
     this->_ydir = 0;
     this->_w = 16;
@@ -54,7 +54,7 @@ void Monster::evolve(){
     _age = 0;
     if (this->_data.stage == digitama){
         _x = 32 - 8;
-        _y = 64 - 16 - 4;
+        _y = 64 - 16 - 6;
     }
 }
 
