@@ -162,7 +162,7 @@ static const MonsterRef MonsterDB[] = {
 	300,
 	"walk",
 	2,
-	"bg/166_0xa6.bmp",
+	"bg/bg_0.bmp",
 	{Monzaemon, Mamemon}
 },
 {

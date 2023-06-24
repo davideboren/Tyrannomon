@@ -23,7 +23,7 @@ void setup() {
   Serial.begin(9600);
   
   tft.begin();
-  tft.setRotation(1);
+  tft.setRotation(0);
   tft.fillScreen(0x8);
   //while(!Serial);
 
@@ -74,7 +74,7 @@ void loop() {
   mon.update();
   mon.pushSprite(&scene);
 
-  scene.pushImageScaled(&tft,0,0);
+ scene.pushImageScaled(&tft,0,0);
 
-  delay(400);
+  delay(200);
 }

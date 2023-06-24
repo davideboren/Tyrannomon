@@ -44,6 +44,7 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
           b = *bptr++;
           g = *bptr++;
           r = *bptr++;
+          if(0){
           if(!(r == 0xFF && g == 0x00 && b == 0xFF)){
             //TFT is too heavy on blue tones, adjust colors accordingly
             int r_adj = (int) r*1.3;
@@ -57,6 +58,7 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
             r = (uint8_t)r_adj;
             g = (uint8_t)g_adj;
             b *= 0.85;
+          }
           }
           uint16_t color = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
           spr->drawPixel(col, h - row - 1, color);

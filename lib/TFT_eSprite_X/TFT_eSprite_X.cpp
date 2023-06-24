@@ -131,7 +131,6 @@ bool TFT_eSprite_X::pushToSpriteCropped(TFT_eSprite_X *dspr, int32_t x, int32_t 
 
     void TFT_eSprite_X::pushImageScaled(TFT_eSPI *tft, int32_t x, int32_t y){
         //TODO: optimize (setAddrWindow and push byte by byte probably).
-        tft->startWrite();
         for(int row = 0; row < height(); row++){
             for(int col = 0; col < width(); col++){
                 tft->drawPixel(col*2, row*2, readPixel(col,row));
@@ -140,7 +139,6 @@ bool TFT_eSprite_X::pushToSpriteCropped(TFT_eSprite_X *dspr, int32_t x, int32_t 
                 tft->drawPixel(col*2 + 1, row*2 + 1, readPixel(col,row));
             }
         }
-        tft->endWrite();
     }
 
     void TFT_eSprite_X::pushImage1x(TFT_eSPI *tft, int32_t x, int32_t y){
