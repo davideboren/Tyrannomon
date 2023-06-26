@@ -26,7 +26,6 @@ class Entity {
         virtual void update();
 
         void pushSprite(TFT_eSprite_X *bg);
-        void pushSprite2x(TFT_eSprite_X *bg);
         void setSprite(String filename);
 
 };

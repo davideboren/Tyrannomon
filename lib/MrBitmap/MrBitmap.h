@@ -9,7 +9,7 @@
 
 class MrBitmap {
     public:
-        void loadBmp(String filename, TFT_eSprite_X* spr);
+        void loadBmp(String filename, TFT_eSprite_X* spr, int scale);
         uint16_t get_width(String filename);
         uint16_t get_height(String filename);
     private:

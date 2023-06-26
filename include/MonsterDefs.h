@@ -7,28 +7,12 @@
 
 enum MonsterName {
 Empty,
-Agu2006_Digitama,
-Botamon,
-Koromon,
-MetalTyranomon_X,
-MetalGreymon_X,
-Mamemon_X,
-WarGreymon,
-Monzaemon,
-Mamemon,
-Tyrannomon,
-Numemon,
-Greymon_X,
-Tyrannomon_X,
-Agumon_X,
-Elecmon,
-Agumon,
-Greymon,
-MetalGreymon,
-SkullGreymon,
-PrinceMamemon_X,
-WarGreymon_X,
-PrinceMamemon,
+PicoDevi_Digitama,
+Mokumon,
+PetiMeramon,
+Candmon,
+Ghostmon,
+PicoDevimon,
 RandomEgg
 };
 
@@ -66,223 +50,63 @@ static const MonsterRef MonsterDB[] = {
 	{Empty}
 },
 {
-	"sprites/digitama/Agu2006_Digitama.bmp",
-	Agu2006_Digitama,
+	"sprites/digitama/PicoDevi_Digitama.bmp",
+	PicoDevi_Digitama,
 	digitama,
 	60,
 	"walk",
 	0,
-	"bg/162_0xa2.bmp",
-	{Botamon}
+	"bg/bg_spooky.bmp",
+	{Mokumon}
 },
 {
-	"sprites/baby/Botamon.bmp",
-	Botamon,
+	"sprites/baby/Mokumon.bmp",
+	Mokumon,
 	baby,
 	120,
 	"walk",
 	2,
-	"bg/162_0xa2.bmp",
-	{Koromon}
+	"bg/bg_spooky.bmp",
+	{PetiMeramon}
 },
 {
-	"sprites/baby_ii/Koromon.bmp",
-	Koromon,
+	"sprites/baby_ii/PetiMeramon.bmp",
+	PetiMeramon,
 	baby_ii,
 	180,
 	"walk",
 	2,
-	"bg/162_0xa2.bmp",
-	{Agumon, Agumon_X, Elecmon}
+	"bg/bg_spooky.bmp",
+	{PicoDevimon, Candmon, Ghostmon}
 },
 {
-	"sprites/perfect/MetalTyranomon_X.bmp",
-	MetalTyranomon_X,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/171_0xab.bmp",
-	{RandomEgg}
-},
-{
-	"sprites/perfect/MetalGreymon_X.bmp",
-	MetalGreymon_X,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/165_0xa5.bmp",
-	{WarGreymon_X}
-},
-{
-	"sprites/perfect/Mamemon_X.bmp",
-	Mamemon_X,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/173_0xad.bmp",
-	{PrinceMamemon_X}
-},
-{
-	"sprites/ultimate/WarGreymon.bmp",
-	WarGreymon,
-	ultimate,
-	300,
-	"walk",
-	2,
-	"bg/163_0xa3.bmp",
-	{RandomEgg}
-},
-{
-	"sprites/perfect/Monzaemon.bmp",
-	Monzaemon,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/169_0xa9.bmp",
-	{RandomEgg}
-},
-{
-	"sprites/perfect/Mamemon.bmp",
-	Mamemon,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/169_0xa9.bmp",
-	{PrinceMamemon}
-},
-{
-	"sprites/adult/Tyrannomon.bmp",
-	Tyrannomon,
-	adult,
-	300,
-	"walk",
-	2,
-	"bg/bg_0.bmp",
-	{Monzaemon, Mamemon}
-},
-{
-	"sprites/adult/Numemon.bmp",
-	Numemon,
-	adult,
-	300,
-	"walk",
-	2,
-	"bg/169_0xa9.bmp",
-	{Monzaemon}
-},
-{
-	"sprites/adult/Greymon_X.bmp",
-	Greymon_X,
-	adult,
-	300,
-	"walk",
-	2,
-	"bg/165_0xa5.bmp",
-	{MetalGreymon_X, Mamemon_X}
-},
-{
-	"sprites/adult/Tyrannomon_X.bmp",
-	Tyrannomon_X,
-	adult,
-	300,
-	"walk",
-	2,
-	"bg/171_0xab.bmp",
-	{MetalTyranomon_X, Mamemon_X}
-},
-{
-	"sprites/child/Agumon_X.bmp",
-	Agumon_X,
+	"sprites/child/Candmon.bmp",
+	Candmon,
 	child,
 	240,
 	"walk",
 	2,
-	"bg/165_0xa5.bmp",
-	{Greymon_X, Tyrannomon_X}
+	"bg/bg_spooky.bmp",
+	{RandomEgg}
 },
 {
-	"sprites/child/Elecmon.bmp",
-	Elecmon,
+	"sprites/child/Ghostmon.bmp",
+	Ghostmon,
 	child,
 	240,
 	"walk",
 	2,
-	"bg/162_0xa2.bmp",
-	{Numemon, Tyrannomon}
+	"bg/bg_spooky.bmp",
+	{RandomEgg}
 },
 {
-	"sprites/child/Agumon.bmp",
-	Agumon,
+	"sprites/child/PicoDevimon.bmp",
+	PicoDevimon,
 	child,
 	240,
 	"walk",
 	2,
-	"bg/162_0xa2.bmp",
-	{Greymon, Numemon}
-},
-{
-	"sprites/adult/Greymon.bmp",
-	Greymon,
-	adult,
-	300,
-	"walk",
-	2,
-	"bg/163_0xa3.bmp",
-	{MetalGreymon, SkullGreymon}
-},
-{
-	"sprites/perfect/MetalGreymon.bmp",
-	MetalGreymon,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/163_0xa3.bmp",
-	{WarGreymon}
-},
-{
-	"sprites/perfect/SkullGreymon.bmp",
-	SkullGreymon,
-	perfect,
-	300,
-	"walk",
-	2,
-	"bg/164_0xa4.bmp",
-	{RandomEgg}
-},
-{
-	"sprites/ultimate/PrinceMamemon_X.bmp",
-	PrinceMamemon_X,
-	ultimate,
-	300,
-	"walk",
-	2,
-	"bg/171_0xab.bmp",
-	{RandomEgg}
-},
-{
-	"sprites/ultimate/WarGreymon_X.bmp",
-	WarGreymon_X,
-	ultimate,
-	300,
-	"walk",
-	2,
-	"bg/165_0xa5.bmp",
-	{RandomEgg}
-},
-{
-	"sprites/ultimate/PrinceMamemon.bmp",
-	PrinceMamemon,
-	ultimate,
-	300,
-	"walk",
-	2,
-	"bg/169_0xa9.bmp",
+	"bg/bg_spooky.bmp",
 	{RandomEgg}
 },
 {
@@ -293,7 +117,7 @@ static const MonsterRef MonsterDB[] = {
 	"walk",
 	2,
 	"bg/bg_0.bmp",
-	{Agu2006_Digitama}
+	{PicoDevi_Digitama}
 }
 };
 #endif //_MONSTER_DEFS_H_

@@ -21,22 +21,12 @@ void Entity::pushSprite(TFT_eSprite_X *bg){
     0xF81F);
 }
 
-void Entity::pushSprite2x(TFT_eSprite_X *bg){
-  this->spr.pushToSprite2x(
-    bg,
-    this->_x, this->_y,
-    this->_xdir,
-    this->_sx, this->_sy,
-    this->_w, this->_h,
-    0xF81F);
-}
-
 void Entity::setSprite(String filename){
     MrBitmap mrb = MrBitmap();
-    this->_w = mrb.get_width(filename);
-    this->_h = mrb.get_height(filename);
+    this->_w = mrb.get_width(filename)*2;
+    this->_h = mrb.get_height(filename)*2;
     spr.createSprite(this->_w, this->_h);
-    mrb.loadBmp(filename, &(this->spr));
+    mrb.loadBmp(filename, &(this->spr), 2);
 }
 
 void Entity::update(){

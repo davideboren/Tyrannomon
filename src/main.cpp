@@ -74,7 +74,7 @@ void loop() {
   mon.update();
   mon.pushSprite(&scene);
 
- scene.pushImageScaled(&tft,0,0);
+ scene.pushSprite(0,0);
 
-  delay(200);
+  delay(500);
 }

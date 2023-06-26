@@ -1,12 +1,12 @@
 #include <Monster.h>
 
 Monster::Monster(){
-    this->_x = 32 - 8;
-    this->_y = 64 - 16 - 6;
+    this->_x = 64 - 16;
+    this->_y = 128 - 32 - 12;
     this->_xdir = 1;
     this->_ydir = 0;
-    this->_w = 16;
-    this->_h = 16;
+    this->_w = 32;
+    this->_h = 32;
     this->_sx = 0;
     this->_sy = 0;
 
@@ -19,9 +19,11 @@ Monster::Monster(MonsterName name){
 }
 
 void Monster::setCharacter(MonsterName name){
-    spr.createSprite(48,64);
     MrBitmap mrb = MrBitmap();
-    mrb.loadBmp(MonsterDB[name].filepath, &(this->spr));
+    int w = mrb.get_width(MonsterDB[name].filepath)*2;
+    int h = mrb.get_height(MonsterDB[name].filepath)*2;
+    spr.createSprite(w,h);
+    mrb.loadBmp(MonsterDB[name].filepath, &(this->spr), 2);
     _data = MonsterDB[name];
     _name = name;
 
@@ -53,16 +55,16 @@ void Monster::evolve(){
     setCharacter(next_mon);
     _age = 0;
     if (this->_data.stage == digitama){
-        _x = 32 - 8;
-        _y = 64 - 16 - 6;
+        _x = 64 - 16;
+        _y = 128 - 32 - 12;
     }
 }
 
 void Monster::update(){
     _age++;
     //Bounds
-    if      ( _x <= -8 )    { _xdir =  1; }
-    else if ( _x >= 56 )    { _xdir = -1; }
+    if      ( _x <= -16 )    { _xdir =  1; }
+    else if ( _x >= 112 )    { _xdir = -1; }
 
     else if (!random(4) && this->_data.stage != digitama){ //Change direction
         if (_xdir != 0)     { _xdir =  0; }

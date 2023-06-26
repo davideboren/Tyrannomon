@@ -2,7 +2,7 @@
 
 //Load BMP file from SD card into TFT_eSprite_X
 //Based on Bodmer's bmp draw function
-void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
+void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr, int scale) {
   // Open requested file on SD card
   String filepath = "/" + filename;
   this->bmpFS = SD.open(filepath.c_str(), FILE_READ);
@@ -45,23 +45,32 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr) {
           g = *bptr++;
           r = *bptr++;
           if(0){
-          if(!(r == 0xFF && g == 0x00 && b == 0xFF)){
-            //TFT is too heavy on blue tones, adjust colors accordingly
-            int r_adj = (int) r*1.3;
-            if(r_adj > 255){
-              r_adj = 255;
+            if(!(r == 0xFF && g == 0x00 && b == 0xFF)){
+              //TFT is too heavy on blue tones, adjust colors accordingly
+              int r_adj = (int) r*1.3;
+              if(r_adj > 255){
+                r_adj = 255;
+              }
+              int g_adj = (int) g*1.05;
+              if(g_adj > 255){
+                g_adj = 255;
+              }
+              r = (uint8_t)r_adj;
+              g = (uint8_t)g_adj;
+              b *= 0.85;
             }
-            int g_adj = (int) g*1.05;
-            if(g_adj > 255){
-              g_adj = 255;
-            }
-            r = (uint8_t)r_adj;
-            g = (uint8_t)g_adj;
-            b *= 0.85;
-          }
           }
           uint16_t color = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
-          spr->drawPixel(col, h - row - 1, color);
+          if(scale == 2){
+            int y_pos = h - row - 1;
+            spr->drawPixel(col*2, y_pos*2, color);
+            spr->drawPixel(col*2 + 1, y_pos*2, color);
+            spr->drawPixel(col*2, y_pos*2 + 1, color);
+            spr->drawPixel(col*2 + 1, y_pos*2 + 1, color);
+          }
+          else{
+            spr->drawPixel(col, h - row - 1, color);
+          }
         }
 
         // Push the pixel row to screen, pushImage will crop the line if needed
