@@ -83,13 +83,13 @@ void Monster::update(){
             this->_sy = SPR_HATCH_Y;
         }
         else if (_age == this->_lifespan - 8){
-            _x -= 1;
-        }
-        else if (_age == this->_lifespan - 6){
             _x -= 2;
         }
+        else if (_age == this->_lifespan - 6){
+            _x -= 4;
+        }
         else if (_age == this->_lifespan - 5 || _age == this->_lifespan - 7){
-            _x += 2;
+            _x += 4;
         }
     }
     else if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
