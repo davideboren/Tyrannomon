@@ -3,7 +3,7 @@
 Entity::Entity(){
     this->_x = 0;
     this->_y = 0;
-    this->_xdir = 1;
+    this->_xdir = -1;
     this->_ydir = 0;
     this->_w = 16;
     this->_h = 16;
