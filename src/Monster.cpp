@@ -23,7 +23,7 @@ void Monster::setCharacter(MonsterName name){
     int w = mrb.get_width(MonsterDB[name].filepath)*2;
     int h = mrb.get_height(MonsterDB[name].filepath)*2;
     spr.createSprite(w,h);
-    mrb.loadBmp(MonsterDB[name].filepath, &(this->spr), 2, 0xd78c);
+    mrb.loadBmp(MonsterDB[name].filepath, &(this->spr), 2);
     _data = MonsterDB[name];
     _name = name;
 
