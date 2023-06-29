@@ -126,7 +126,7 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr, int scale, uint16_t 
           g = *bptr++;
           r = *bptr++;
 
-          uint16_t color = 0x2945;
+          uint16_t color = 0x2106;
           if(r == 0xFF && g == 0x00 && b == 0xFF){
             color = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
           }
@@ -153,9 +153,9 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr, int scale, uint16_t 
               continue;
             }
             uint16_t left_px = x == 0 ? 0xF81F : spr->readPixel(x-1, y);
-            uint16_t right_px = x == w ? 0xF81F : spr->readPixel(x+1, y);
+            uint16_t right_px = x == w*2 ? 0xF81F : spr->readPixel(x+1, y);
             uint16_t top_px = y == 0 ? 0xF81F : spr->readPixel(x, y-1);
-            uint16_t bottom_px = y == h ? 0xF81F : spr->readPixel(x, y+1);
+            uint16_t bottom_px = y == h*2 ? 0xF81F : spr->readPixel(x, y+1);
             if(left_px == 0xF81F){
               spr->drawPixel(x,y,fill);
               spr->drawPixel(x+1,y,fill);
