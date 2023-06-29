@@ -83,6 +83,107 @@ void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr, int scale) {
   bmpFS.close();
 }
 
+void MrBitmap::loadBmp(String filename, TFT_eSprite_X* spr, int scale, uint16_t fill) {
+  // Open requested file on SD card
+  String filepath = "/" + filename;
+  this->bmpFS = SD.open(filepath.c_str(), FILE_READ);
+
+  if (!bmpFS)
+  {
+    Serial.print("File not found");
+    return;
+  }
+
+  uint32_t seekOffset;
+  uint16_t w, h, row;
+  uint8_t  r, g, b;
+
+  if (this->read16(bmpFS) == 0x4D42)
+  {
+    this->read32(bmpFS);
+    this->read32(bmpFS);
+    seekOffset = this->read32(bmpFS);
+    this->read32(bmpFS);
+    w = this->read32(bmpFS);
+    h = this->read32(bmpFS);
+
+    if ((this->read16(bmpFS) == 1) && (this->read16(bmpFS) == 24) && (this->read32(bmpFS) == 0))
+    {
+      bmpFS.seek(seekOffset);
+
+      uint16_t padding = (4 - ((w * 3) & 3)) & 3;
+      uint8_t lineBuffer[w * 3 + padding];
+
+      for (row = 0; row < h; row++) {
+        
+        bmpFS.read(lineBuffer, sizeof(lineBuffer));
+        uint8_t*  bptr = lineBuffer;
+        
+        // Convert 24 to 16 bit colours
+        for (uint16_t col = 0; col < w; col++)
+        {
+          b = *bptr++;
+          g = *bptr++;
+          r = *bptr++;
+
+          uint16_t color = 0x2945;
+          if(r == 0xFF && g == 0x00 && b == 0xFF){
+            color = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
+          }
+          else if(row % 3 == 0 || col % 3 == 0){
+            color = fill;
+          }
+          if(scale == 2){
+            int y_pos = h - row - 1;
+            spr->drawPixel(col*2, y_pos*2, color);
+            spr->drawPixel(col*2 + 1, y_pos*2, color);
+            spr->drawPixel(col*2, y_pos*2 + 1, color);
+            spr->drawPixel(col*2 + 1, y_pos*2 + 1, color);
+          }
+          else{
+            spr->drawPixel(col, h - row - 1, color);
+          }
+        }
+
+        //Rescan sprite for outline
+        //Todo: fix when sprites are hugging on the sheet
+        for(int y = 0; y < h*2; y++){
+          for(int x = 0; x < w*2; x++){
+            if(spr->readPixel(x,y) == 0xF81F){
+              continue;
+            }
+            uint16_t left_px = x == 0 ? 0xF81F : spr->readPixel(x-1, y);
+            uint16_t right_px = x == w ? 0xF81F : spr->readPixel(x+1, y);
+            uint16_t top_px = y == 0 ? 0xF81F : spr->readPixel(x, y-1);
+            uint16_t bottom_px = y == h ? 0xF81F : spr->readPixel(x, y+1);
+            if(left_px == 0xF81F){
+              spr->drawPixel(x,y,fill);
+              spr->drawPixel(x+1,y,fill);
+            }
+            if(right_px == 0xF81F){
+              spr->drawPixel(x,y,fill);
+              spr->drawPixel(x-1,y,fill);
+            }
+            if(top_px == 0xF81F){
+              spr->drawPixel(x,y,fill);
+              spr->drawPixel(x,y+1,fill);
+            }
+            if(bottom_px == 0xF81F){
+              spr->drawPixel(x,y,fill);
+              spr->drawPixel(x,y-1,fill);
+            } 
+          }
+        }
+
+        // Push the pixel row to screen, pushImage will crop the line if needed
+        // y is decremented as the BMP image is drawn bottom up
+        //tft->pushImage(x, y--, w, 1, (uint16_t*)lineBuffer);
+      }
+    }
+    else Serial.println("BMP format not recognized.");
+  }
+  bmpFS.close();
+}
 uint16_t MrBitmap::get_width(String filename){
   // Open requested file on SD card
   String filepath = "/" + filename;
