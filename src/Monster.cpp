@@ -65,15 +65,22 @@ void Monster::evolve(){
     }
 }
 
-void Monster::update(){
+void Monster::update(Event events[10]){
     _age++;
 
+    if(true){
+        Serial.print(_age);
+        Serial.print("/");
+        Serial.println(_lifespan);
+    }
+
     if(_age >= _lifespan){
-        queue.push(EVO_READY);
+        evolve();
+        queue.push(REFRESH_BG);
     }
     //Evo grid mask
     int time_left = _lifespan - _age;
-    bool need_mask = time_left < 600 || _lifespan - time_left < 600;
+    bool need_mask = time_left < 120 || _lifespan - time_left < 120;
     if(_evo_mask != need_mask){
             _evo_mask = !_evo_mask;
             MrBitmap mrb = MrBitmap();

@@ -49,6 +49,7 @@ void setup() {
   int stored_age;
   EEPROM.get(32, stored_age);
   mon._age = stored_age;
+  mon._age = 28700;
 
   current_bg = mon._data.bg;
   bg.setSprite(current_bg);
@@ -61,10 +62,12 @@ void loop() {
   EEPROM.put(32, mon.get_age());
   EEPROM.commit();
 
-  while(mon.evo_ready()){
-    mon.evolve();
-    bg.setSprite(mon._data.bg);
+  for(int i = 0; i < 10; i++){
+    if(queue.events[i] == REFRESH_BG){
+      bg.setSprite(mon._data.bg);
+    }
   }
+  queue.clear();
 
   for(int i = 0; i < 10; i++){
     if(entities[i] != NULL){
@@ -73,12 +76,10 @@ void loop() {
     }
   }
 
-  mon.update();
+  mon.update(queue.events);
   mon.pushSprite(&scene);
 
   scene.pushSprite(0,0);
-
-  queue.clear();
  
   delay(500);
 }

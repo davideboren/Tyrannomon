@@ -28,7 +28,7 @@ class Monster : public Entity{
         int get_age();
         bool evo_ready();
         void evolve();
-        void update();
+        void update(Event events[10]);
 
 };
 
