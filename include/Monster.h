@@ -19,6 +19,9 @@ class Monster : public Entity{
         MonsterName _name;
         int _age;
         int _lifespan;
+        bool _evo_mask;
+
+        int _bound_l, _bound_r;
 
         void setCharacter(MonsterName name);
         MonsterName get_name();

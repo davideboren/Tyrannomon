@@ -10,8 +10,12 @@ Monster::Monster(){
     this->_sx = 0;
     this->_sy = 0;
 
-    this->_age = 0;
-    this->_lifespan = 10;
+    _age = 0;
+    _lifespan = 10;
+    _evo_mask = false;
+
+    _bound_l = -16;
+    _bound_r = 112;
 }
 
 Monster::Monster(MonsterName name){
@@ -54,6 +58,7 @@ void Monster::evolve(){
     MonsterName next_mon = MonsterDB[_name].evos[evo_choice];
     setCharacter(next_mon);
     _age = 0;
+    _evo_mask = false;
     if (this->_data.stage == digitama){
         _x = 64 - 16;
         _y = 128 - 32 - 12;
@@ -62,9 +67,23 @@ void Monster::evolve(){
 
 void Monster::update(){
     _age++;
+
+    int time_left = _lifespan - _age;
+    bool need_mask = time_left < 600 || _lifespan - time_left < 600;
+    if(_evo_mask != need_mask){
+            _evo_mask = !_evo_mask;
+            MrBitmap mrb = MrBitmap();
+            if(_evo_mask){
+                mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2, 0x5e06);
+            }
+            else {
+                mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2);
+            }
+    }
+
     //Bounds
-    if      ( _x <= -16 )    { _xdir =  1; }
-    else if ( _x >= 112 )    { _xdir = -1; }
+    if (_x <= _bound_l) _xdir =  1; 
+    else if (_x >= _bound_r) _xdir = -1; 
 
     else if (!random(4) && this->_data.stage != digitama){ //Change direction
         if (_xdir != 0)     { _xdir =  0; }
