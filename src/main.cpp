@@ -49,7 +49,6 @@ void setup() {
   int stored_age;
   EEPROM.get(32, stored_age);
   mon._age = stored_age;
-  mon._age = 28700;
 
   current_bg = mon._data.bg;
   bg.setSprite(current_bg);
