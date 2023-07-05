@@ -1,6 +1,10 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+#include <TFT_eSPI.h>
+#include <EventQueue.h>
+
+//Monster Spritesheet Coordinates
 #define SPR_HATCH_X 32*2
 #define SPR_HATCH_Y 0*2
 #define SPR_STAND1_X 0*2
@@ -16,9 +20,8 @@
 #define SPR_ATTACK_X 32*2
 #define SPR_ATTACK_Y 32*2
 
-#include <TFT_eSPI.h>
-
 extern TFT_eSPI tft;
 
+extern EventQueue queue;
 
 #endif // _GLOBAL_H_

@@ -68,6 +68,10 @@ void Monster::evolve(){
 void Monster::update(){
     _age++;
 
+    if(_age >= _lifespan){
+        queue.push(EVO_READY);
+    }
+    //Evo grid mask
     int time_left = _lifespan - _age;
     bool need_mask = time_left < 600 || _lifespan - time_left < 600;
     if(_evo_mask != need_mask){

@@ -10,6 +10,8 @@
 
 TFT_eSPI tft = TFT_eSPI();
 
+EventQueue queue = EventQueue();
+
 TFT_eSprite_X scene = TFT_eSprite_X(&tft);
 
 String current_bg;
@@ -74,7 +76,9 @@ void loop() {
   mon.update();
   mon.pushSprite(&scene);
 
- scene.pushSprite(0,0);
+  scene.pushSprite(0,0);
 
+  queue.clear();
+ 
   delay(500);
 }
