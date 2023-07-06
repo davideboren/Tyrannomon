@@ -79,17 +79,19 @@ void Monster::update(Event events[10]){
         queue.push(REFRESH_BG);
     }
     //Evo grid mask
-    int time_left = _lifespan - _age;
-    bool need_mask = time_left < 120 || _lifespan - time_left < 120;
-    if(_evo_mask != need_mask){
-            _evo_mask = !_evo_mask;
-            MrBitmap mrb = MrBitmap();
-            if(_evo_mask){
-                mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2, 0x5e06);
-            }
-            else {
-                mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2);
-            }
+    if(_data.stage != digitama && _data.stage != baby){
+        int time_left = _lifespan - _age;
+        bool need_mask = time_left < 600 || _lifespan - time_left < 600;
+        if(_evo_mask != need_mask){
+                _evo_mask = !_evo_mask;
+                MrBitmap mrb = MrBitmap();
+                if(_evo_mask){
+                    mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2, 0x5e06);
+                }
+                else {
+                    mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2);
+                }
+        }
     }
 
     //Bounds

@@ -23,6 +23,8 @@ Entity* entities[10];
 
 void setup() {
   Serial.begin(9600);
+
+  randomSeed(analogRead(0));
   
   tft.begin();
   tft.setRotation(0);
