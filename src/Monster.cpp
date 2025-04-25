@@ -26,6 +26,7 @@ void Monster::setCharacter(MonsterName name){
     MrBitmap mrb = MrBitmap();
     int w = mrb.get_width(MonsterDB[name].filepath)*2;
     int h = mrb.get_height(MonsterDB[name].filepath)*2;
+    spr.deleteSprite();
     spr.createSprite(w,h);
     mrb.loadBmp(MonsterDB[name].filepath, &(this->spr), 2);
     _data = MonsterDB[name];
