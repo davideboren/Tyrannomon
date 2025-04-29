@@ -23,6 +23,8 @@ class Monster : public Entity{
 
         int _bound_l, _bound_r;
 
+        bool _lag_frame;
+
         void setCharacter(MonsterName name);
         MonsterName get_name();
         int get_age();

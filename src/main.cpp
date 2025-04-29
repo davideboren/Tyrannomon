@@ -52,7 +52,7 @@ void setup() {
   if(stored_mon == Empty){
     stored_mon = RandomEgg;
   }
-  mon.setCharacter(Betamon);
+  mon.setCharacter(stored_mon);
   //mon.setCharacter(RandomEgg);
   int stored_age;
   EEPROM.get(32, stored_age);
@@ -83,6 +83,7 @@ void loop() {
     }
   }
 
+
   mon.update(queue.events);
   mon.pushSprite(&scene);
 
@@ -95,5 +96,5 @@ void loop() {
 
   scene.pushSprite(0,0);
  
-  delay(500);
+  delay(250);
 }

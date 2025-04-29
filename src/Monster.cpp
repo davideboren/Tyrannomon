@@ -16,6 +16,8 @@ Monster::Monster(){
 
     _bound_l = -16;
     _bound_r = 112;
+
+    _lag_frame = false;
 }
 
 Monster::Monster(MonsterName name){
@@ -67,84 +69,87 @@ void Monster::evolve(){
 }
 
 void Monster::update(Event events[10]){
-    _age++;
+    if(!_lag_frame){
+        _age++;
 
-    if(false){
-        Serial.print(_age);
-        Serial.print("/");
-        Serial.println(_lifespan);
-    }
+        if(false){
+            Serial.print(_age);
+            Serial.print("/");
+            Serial.println(_lifespan);
+        }
 
-    if(_age >= _lifespan){
-        evolve();
-        queue.push(REFRESH_BG);
-    }
-    //Evo grid mask
-    if(_data.stage != digitama && _data.stage != baby){
-        int time_left = _lifespan - _age;
-        bool need_mask = time_left < 600 || _lifespan - time_left < 600;
-        if(_evo_mask != need_mask){
-                _evo_mask = !_evo_mask;
-                MrBitmap mrb = MrBitmap();
-                if(_evo_mask){
-                    mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2, 0x5e06);
-                }
-                else {
-                    mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2);
-                }
+        if(_age >= _lifespan){
+            evolve();
+            queue.push(REFRESH_BG);
         }
-    }
+        //Evo grid mask
+        if(_data.stage != digitama && _data.stage != baby){
+            int time_left = _lifespan - _age;
+            bool need_mask = time_left < 600 || _lifespan - time_left < 600;
+            if(_evo_mask != need_mask){
+                    _evo_mask = !_evo_mask;
+                    MrBitmap mrb = MrBitmap();
+                    if(_evo_mask){
+                        mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2, 0x5e06);
+                    }
+                    else {
+                        mrb.loadBmp(MonsterDB[_name].filepath, &(this->spr), 2);
+                    }
+            }
+        }
 
-    //Bounds
-    if (_x <= _bound_l) _xdir =  1; 
-    else if (_x >= _bound_r) _xdir = -1; 
+        //Bounds
+        if (_x <= _bound_l) _xdir =  1; 
+        else if (_x >= _bound_r) _xdir = -1; 
 
-    else if (!random(4) && this->_data.stage != digitama){ //Change direction
-        if (_xdir != 0)     { _xdir =  0; }
-        else if (random(2)) { _xdir =  1; }
-        else                { _xdir = -1; }
-    }
+        else if (!random(4) && this->_data.stage != digitama){ //Change direction
+            if (_xdir != 0)     { _xdir =  0; }
+            else if (random(2)) { _xdir =  1; }
+            else                { _xdir = -1; }
+        }
 
-    _x += _xdir*_data.speed;
-    
-    //Hatch logic
-    if (this->_data.stage == digitama && _age >= this->_lifespan - 8){
-        this->_sx = SPR_STAND2_X;
-        this->_sy = SPR_STAND2_Y;
-        if (_age >= this->_lifespan - 4){
-            this->_sx = SPR_HATCH_X;
-            this->_sy = SPR_HATCH_Y;
+        _x += _xdir*_data.speed;
+        
+        //Hatch logic
+        if (this->_data.stage == digitama && _age >= this->_lifespan - 8){
+            this->_sx = SPR_STAND2_X;
+            this->_sy = SPR_STAND2_Y;
+            if (_age >= this->_lifespan - 4){
+                this->_sx = SPR_HATCH_X;
+                this->_sy = SPR_HATCH_Y;
+            }
+            else if (_age == this->_lifespan - 8){
+                _x -= 2;
+            }
+            else if (_age == this->_lifespan - 6){
+                _x -= 4;
+            }
+            else if (_age == this->_lifespan - 5 || _age == this->_lifespan - 7){
+                _x += 4;
+            }
         }
-        else if (_age == this->_lifespan - 8){
-            _x -= 2;
+        else if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
+            int dice = 1;
+            if(this->_data.stage != digitama){
+                dice = random(6);
+            }
+            if(dice == 5){
+                this->_sx = SPR_HAPPY_X;
+                this->_sy = SPR_HAPPY_Y;
+            }
+            else if(dice == 4){
+                this->_sx = SPR_ANGRY_X;
+                this->_sy = SPR_ANGRY_Y;
+            }
+            else{
+                this->_sx = SPR_STAND1_X;
+                this->_sy = SPR_STAND1_Y;
+            }
         }
-        else if (_age == this->_lifespan - 6){
-            _x -= 4;
-        }
-        else if (_age == this->_lifespan - 5 || _age == this->_lifespan - 7){
-            _x += 4;
+        else {
+            this->_sx = SPR_STAND2_X;
+            this->_sy = SPR_STAND2_Y;
         }
     }
-    else if(this->_sx == SPR_STAND2_X && this->_sy == SPR_STAND2_Y){
-        int dice = 1;
-        if(this->_data.stage != digitama){
-            dice = random(6);
-        }
-        if(dice == 5){
-            this->_sx = SPR_HAPPY_X;
-            this->_sy = SPR_HAPPY_Y;
-        }
-        else if(dice == 4){
-            this->_sx = SPR_ANGRY_X;
-            this->_sy = SPR_ANGRY_Y;
-        }
-        else{
-            this->_sx = SPR_STAND1_X;
-            this->_sy = SPR_STAND1_Y;
-        }
-    }
-    else {
-        this->_sx = SPR_STAND2_X;
-        this->_sy = SPR_STAND2_Y;
-    }
+    _lag_frame = !_lag_frame;
 }

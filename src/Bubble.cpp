@@ -9,8 +9,9 @@ Bubble::Bubble(){
 
 void Bubble::update(){
     //Respawn after floating off
-    if(this->_y < 0 && !random(15)){
+    if(this->_y < 0 && !random(30)){
         this ->_y = 132;
+        this->_x = random(0,128);
     }
 
     this->_x += random(-4,4);
