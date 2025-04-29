@@ -69,7 +69,7 @@ void Monster::evolve(){
 void Monster::update(Event events[10]){
     _age++;
 
-    if(true){
+    if(false){
         Serial.print(_age);
         Serial.print("/");
         Serial.println(_lifespan);

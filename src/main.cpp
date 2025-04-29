@@ -7,6 +7,7 @@
 #include <TFT_eSprite_X.h>
 #include <MrBitmap.h>
 #include <Monster.h>
+#include <Bubble.h>
 
 TFT_eSPI tft = TFT_eSPI();
 
@@ -20,6 +21,7 @@ Entity bg;
 Monster mon;
 
 Entity* entities[10];
+Bubble* bubbles[3];
 
 void setup() {
   Serial.begin(9600);
@@ -38,6 +40,10 @@ void setup() {
     Serial.println("SD initialized.");
   }
 
+  for(int i = 0; i < 3; i++){
+    bubbles[i] = new Bubble;
+  }
+
   entities[0] = &bg;
 
   EEPROM.begin(64);
@@ -46,7 +52,7 @@ void setup() {
   if(stored_mon == Empty){
     stored_mon = RandomEgg;
   }
-  mon.setCharacter(stored_mon);
+  mon.setCharacter(Betamon);
   //mon.setCharacter(RandomEgg);
   int stored_age;
   EEPROM.get(32, stored_age);
@@ -79,6 +85,13 @@ void loop() {
 
   mon.update(queue.events);
   mon.pushSprite(&scene);
+
+  if(current_bg == "bg/bg_underwater.bmp"){
+    for(int i = 0; i < 3; i++){
+      bubbles[i]->update();
+      bubbles[i]->pushSprite(&scene);
+    }
+  }
 
   scene.pushSprite(0,0);
  
